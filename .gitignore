@@ -1,0 +1,16 @@
+# data
+*.jsonlines
+*.csv
+*.xlsx
+*.xls
+
+# environments
+.env
+meli
+
+# documentation
+*.pdf
+*.txt
+
+# carpeta de codigo obsoleto
+old
