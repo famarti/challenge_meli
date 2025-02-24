@@ -8,7 +8,7 @@ Clasificación de productos en **MercadoLibre** como **nuevos** o **usados**, ap
 2. **Preprocesamiento**: Transformaciones, codificación y generación de variables.
 3. **Selección de Características** a partir de análisis EDA previo, revisado con **RFE** basado en `RandomForestClassifier`.
 4. **Entrenamiento y Optimización** con **LightGBM** + **Optuna**.
-5. **Evaluación**: AUC Final **0.8834** (superando el umbral de 0.86).
+5. **Evaluación**: AUC Final **0.9249** (superando el umbral de 0.86).
 
 ## Tecnologías
 - **Python, Pandas, NumPy, Scikit-learn** (Procesamiento)

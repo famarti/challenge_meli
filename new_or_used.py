@@ -348,7 +348,11 @@ if __name__ == "__main__":
         "pago_MLATB",
         "pago_MLAOT",
         "pago_MLAMP",
-        "price"
+        "price",
+        "initial_quantity",
+        "available_quantity",
+        "sold_quantity",
+        "official_store_id",
     ]
     logging.info("Selected features: {}".format(selected_features))
     df_train_FE_EN = df_train_FE_EN[selected_features]
@@ -384,4 +388,4 @@ if __name__ == "__main__":
     # Evaluación final en el conjunto de test
     final_preds = final_model.predict(df_test_FE_EN)
     final_auc = roc_auc_score(y_test, final_preds)
-    logging.info(f"Final AUC: {final_auc}") # Final AUC: 0.8834806365683754
+    logging.info(f"Final AUC: {final_auc}") # Final AUC: 0.9249279972542158
