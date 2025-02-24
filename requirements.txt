@@ -1,0 +1,7 @@
+ipykernel
+pandas==2.2.3
+matplotlib==3.9.4
+seaborn==0.13.2
+scikit-learn==1.6.1
+lightgbm==4.6.0
+optuna==4.2.1

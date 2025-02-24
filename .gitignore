@@ -10,7 +10,6 @@ meli
 
 # documentation
 *.pdf
-*.txt
 
 # carpeta de codigo obsoleto
 old
