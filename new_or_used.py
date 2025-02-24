@@ -327,15 +327,16 @@ if __name__ == "__main__":
     df_train = pd.DataFrame(X_train)
     df_test = pd.DataFrame(X_test)
     
-    # Aplicar Feature Engineering
+    # Aplicamos todas las transformaciones de Feature Engineering descriptas en dicha funcion
+    # Para creación de nuevas variables y limpieza de los dataset
     df_train_FE, df_test_FE = feature_engineering(df_train, df_test)
     
-    # Aplicar Data Encoding
+    # Aplicar Data Encoding para poder modelar variables categóricas.
     df_train_FE_EN, df_test_FE_EN = data_encoding(df_train_FE, df_test_FE)
 
     logging.info("Preprocessing completed.")
 
-    # Aplicar Feature Selection
+    # Aplicar Feature Selection: decididas a partir del EDA realizado en EDA.ipynb.
     selected_features = [
         'listing_type_id_free', 'listing_type_id_gold', 'listing_type_id_gold_special', 'listing_type_id_silver',
         "catalog_product_id",
@@ -358,7 +359,7 @@ if __name__ == "__main__":
     df_train_FE_EN = df_train_FE_EN[selected_features]
     df_test_FE_EN = df_test_FE_EN[selected_features]
 
-    # Optimización con Optuna
+    # Inicializamos Optuna para optimizar los hiperparámetros de LightGBM, maximizando el AUC.
     logging.info("Starting hyperparameter optimization with Optuna...")
     study = optuna.create_study(direction='maximize')
     study.optimize(objective, n_trials=50)
@@ -367,12 +368,13 @@ if __name__ == "__main__":
     best_params = study.best_params
     logging.info(f"Best hyperparameters: {best_params}")
 
-    # Dividir el dataset de entrenamiento en train y validation (80%-20%)
+    # Dividir el dataset de entrenamiento en train y validation (80%-20%): necesario para el entrenamiento del lightgbm
+    # solo usamos el dataset de train para entrenar el modelo final y para splitear en train y validación.
     X_train_final, X_valid, y_train_final, y_valid = train_test_split(
         df_train_FE_EN, y_train, test_size=0.2, random_state=8021994, stratify=y_train
     )
 
-    # Crear datasets de LightGBM
+    # Crear datasets de LightGBM: paso necesario para trabajar con dicha librería.
     dtrain = lgb.Dataset(X_train_final, label=y_train_final)
     dvalid = lgb.Dataset(X_valid, label=y_valid)
 
